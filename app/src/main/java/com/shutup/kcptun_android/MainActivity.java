@@ -29,7 +29,7 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity implements Constants{
 
     private static final String TAG = "MainActivity";
-    private String kcptun = "kcp_tun";
+    private String kcptun = "goflyway";
     private String binary_path = null;
 
     @InjectView(R.id.info)
