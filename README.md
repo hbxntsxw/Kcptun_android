@@ -1,4 +1,5 @@
-Fork自Kcptun_android，通过修改适配了goflyway，支持CDN。#预编译安装包latest
+Fork自Kcptun_android，通过修改适配了goflyway，支持CDN。
+
 [预编译安装包latest 下载](https://github.com/koolwiki/goflyway_android/releases/latest)
 
 UI配制如下图，有的手机杀后台比较严重，可以把goflyway_android加入白名单或者不进行省电优化。
