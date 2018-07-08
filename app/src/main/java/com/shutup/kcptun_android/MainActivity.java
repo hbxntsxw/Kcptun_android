@@ -82,8 +82,8 @@ public class MainActivity extends AppCompatActivity implements Constants{
     private void tryToStart() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         cmdParam = new CmdParam();
-        cmdParam.localaddr = ":" + sharedPreferences.getString(LocalServerPort, "");
-        cmdParam.remoteaddr = sharedPreferences.getString(RemoteServerIp, "").equalsIgnoreCase("") ? "": sharedPreferences.getString(RemoteServerIp, "") + ":" + sharedPreferences.getString(RemoteServerPort,"");
+        cmdParam.localaddr = sharedPreferences.getString(LocalServerPort, "");
+        cmdParam.remoteaddr = sharedPreferences.getString(RemoteServerIp, "");
         cmdParam.key = sharedPreferences.getString(ServerKey, "");
         cmdParam.mode = sharedPreferences.getString(ServerMode, "");
         if (cmdParam.isBasicOk()){
@@ -167,15 +167,15 @@ public class MainActivity extends AppCompatActivity implements Constants{
         arch = arch == null ? "" : arch;
         if (arch.contains("arm")) {
             if (arch.contains("v7")) {
-                identifierId = getResources().getIdentifier("client_linux_arm7", "raw", getPackageName());
+                identifierId = getResources().getIdentifier("goflyway", "raw", getPackageName());
             } else if (arch.contains("v6")) {
-                identifierId = getResources().getIdentifier("client_linux_arm6", "raw", getPackageName());
+                identifierId = getResources().getIdentifier("goflyway", "raw", getPackageName());
             } else if (arch.contains("v5")) {
-                identifierId = getResources().getIdentifier("client_linux_arm5", "raw", getPackageName());
+                identifierId = getResources().getIdentifier("goflyway", "raw", getPackageName());
             }
         }else if (arch.contains("arch64")) {
             //目前采取兼容模式
-            identifierId = getResources().getIdentifier("client_linux_arm7", "raw", getPackageName());
+            identifierId = getResources().getIdentifier("goflyway", "raw", getPackageName());
         }
         if (BuildConfig.DEBUG) Log.d(TAG, "identifierId:" + identifierId);
         return identifierId;
