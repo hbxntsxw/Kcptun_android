@@ -4,11 +4,11 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
     defaultConfig {
-        applicationId "com.shutup.kcptun_android"
+        applicationId "com.koolwiki.goflyway_android"
         minSdkVersion 10
         targetSdkVersion 23
         versionCode 4
-        versionName '0.4'
+        versionName '1.0'
     }
     buildTypes {
         release {
