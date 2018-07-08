@@ -6,10 +6,10 @@ package com.shutup.kcptun_android;
 public class CmdParam {
 
     public static String LOCALADDR = "-l";
-    public static String REMOTEADDR = "-r";
-    public static String KEY = "-key";
+    public static String REMOTEADDR = "-up";
+    public static String KEY = "-k";
     public static String CRYPT = "-crypt";
-    public static String MODE = "-mode";
+    public static String MODE = "-web-port";
 
 
     public String localaddr;
