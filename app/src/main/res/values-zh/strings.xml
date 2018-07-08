@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Kcptun_android</string>
+    <string name="app_name">goflyway_android</string>
     <string name="info">提示</string>
     <string name="start">启动</string>
     <string name="stop">停止</string>
-    <string name="stop_kcp_tun_normal">Kcptun正常结束！可以再次运行！\n</string>
-    <string name="stop_kcp_tun_exception">Kcptun异常结束！可以再次运行！\n</string>
-    <string name="local_server_port">本地端口号</string>
-    <string name="remote_server_ip">远程服务器IP</string>
+    <string name="stop_kcp_tun_normal">goflyway正常结束！可以再次运行！\n</string>
+    <string name="stop_kcp_tun_exception">goflyway异常结束！可以再次运行！\n</string>
+    <string name="local_server_port">本地端口号-0.0.0.0:8100</string>
+    <string name="remote_server_ip">远程服务器IP或域名-域名:端口</string>
     <string name="remote_server_key">远程服务器密码</string>
-    <string name="remote_server_port">远程服务器端口</string>
-    <string name="server_mode">服务器运行模式</string>
+    <string name="remote_server_port">远程服务器端口-不需要填写</string>
+    <string name="server_mode">网页端口</string>
     <string name="setting">设置</string>
     <string name="no_setting_info">请先进行服务器配置</string>
     <string name="arch_info">运行平台架构:</string>
