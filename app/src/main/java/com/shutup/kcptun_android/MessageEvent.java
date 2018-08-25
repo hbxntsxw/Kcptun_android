@@ -1,4 +1,4 @@
-package com.shutup.kcptun_android;
+package com.koolwiki.goflyway_android;
 
 /**
  * Created by shutup on 16/7/23.
