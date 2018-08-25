@@ -23,15 +23,6 @@
         <activity android:name=".SettingActivity" >
         </activity>
 
-        <receiver
-            android:name=".receiver.WakeReceiver"
-            android:enabled="true"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.koolwiki.goflyway_android" />
-            </intent-filter>
-        </receiver>
-
         <service
             android:name=".service.WhiteService"
             android:enabled="true"
