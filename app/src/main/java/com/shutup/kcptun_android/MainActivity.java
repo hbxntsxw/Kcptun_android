@@ -1,4 +1,9 @@
-package com.shutup.kcptun_android;
+package com.koolwiki.goflyway_android;
+
+
+import com.koolwiki.goflyway_android.service.GrayService;
+import com.koolwiki.goflyway_android.service.WhiteService;
+
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +19,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.squareup.otto.Subscribe;
+
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,15 +29,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
+
+
+
 public class MainActivity extends AppCompatActivity implements Constants{
 
     private static final String TAG = "MainActivity";
-    private String kcptun = "goflyway";
+    private String goflyway = "goflyway";
     private String binary_path = null;
+
 
     @InjectView(R.id.info)
     TextView mInfo;
@@ -46,12 +58,12 @@ public class MainActivity extends AppCompatActivity implements Constants{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.inject(this);
         BusProvider.getInstance().register(this);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
         tryToStart();
+        Intent whiteIntent = new Intent(getApplicationContext(), WhiteService.class);
+        startService(whiteIntent);
         if (BuildConfig.DEBUG) Log.d(TAG, "onCreate");
     }
 
@@ -63,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
         settingChanged = mSharedPreferences.getBoolean(SettingChanged, false);
         if (settingChanged){
             if (process != null) {
-                killTheKcptun();
+                killgoflyway();
             }
             tryToStart();
             SharedPreferences.Editor editor = mSharedPreferences.edit();
@@ -75,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        killTheKcptun();
+        killgoflyway();
         BusProvider.getInstance().unregister(this);
     }
 
@@ -126,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
             }
             BusProvider.getInstance().post(new MessageEvent(getString(R.string.stop),CHANGE_START_BTN_NAME));
             BusProvider.getInstance().post(new MessageEvent(false,CHANGE_SETTING_BTN_ENABLE));
-            binary_path = installBinary(this, identifier, kcptun);
+            binary_path = installBinary(this, identifier, goflyway);
 //            BusProvider.getInstance().post(new MessageEvent(binary_path, APPEND_INFO_CONTENT));
             if (BuildConfig.DEBUG) Log.d(TAG, binary_path);
 
@@ -150,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
                 }
             }).start();
         }else if (mStartBtn.getText().toString().equalsIgnoreCase(getString(R.string.stop))) {
-            killTheKcptun();
+            killgoflyway();
             BusProvider.getInstance().post(new MessageEvent(getString(R.string.start),CHANGE_START_BTN_NAME));
             BusProvider.getInstance().post(new MessageEvent(true,CHANGE_SETTING_BTN_ENABLE));
         }
@@ -173,7 +185,10 @@ public class MainActivity extends AppCompatActivity implements Constants{
             } else if (arch.contains("v5")) {
                 identifierId = getResources().getIdentifier("goflyway", "raw", getPackageName());
             }
-        }else if (arch.contains("arch64")) {
+        }else if (arch.contains("aarch64")) {
+            //目前采取兼容模式
+            identifierId = getResources().getIdentifier("goflyway", "raw", getPackageName());
+        }else if (arch.contains("i686")) {
             //目前采取兼容模式
             identifierId = getResources().getIdentifier("goflyway", "raw", getPackageName());
         }
@@ -242,6 +257,9 @@ public class MainActivity extends AppCompatActivity implements Constants{
      */
     private int runCmdLine(ShellCallback sc) {
         // Executes the command.
+
+
+
         if (cmdParam == null){
 //            Toast.makeText(this, "Please Fill The Setting First", Toast.LENGTH_SHORT).show();
             if (BuildConfig.DEBUG) Log.d(TAG, "Please Fill The Setting First");
@@ -250,6 +268,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
         if (binary_path == null) {
             return -1;
         }
+
         final String cmd = setup_cmd(binary_path, cmdParam);
 
         BusProvider.getInstance().post(new MessageEvent(cmd,APPEND_INFO_CONTENT));
@@ -284,6 +303,8 @@ public class MainActivity extends AppCompatActivity implements Constants{
         return exitVal;
     }
 
+
+
     private String setup_cmd(String binary_path, CmdParam cmdParam) {
         ArrayList<String> params = new ArrayList<>();
         if (cmdParam.localaddr != null) {
@@ -315,7 +336,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
     }
 
 
-    private void killTheKcptun(){
+    private void killgoflyway(){
         if (process != null){
             process.destroy();
             try {
