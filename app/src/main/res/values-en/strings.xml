@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Kcptun_android</string>
+    <string name="app_name">Goflyway</string>
     <string name="info">Info</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
@@ -10,8 +10,8 @@
     <string name="remote_server_key">Remote Server Key</string>
     <string name="server_mode">Server Mode</string>
     <string name="setting">Setting</string>
-    <string name="stop_kcp_tun_exception">Kcptun Stop With Exception!</string>
-    <string name="stop_kcp_tun_normal">Kcptun Stop With Normal!</string>
+    <string name="stop_kcp_tun_exception">Goflyway Stop With Exception!</string>
+    <string name="stop_kcp_tun_normal">Gflyway Stop With Normal!</string>
     <string name="no_setting_info">please setting the app first</string>
     <string name="arch_info">"Current Platform Arch: "</string>
     <string name="detect_cpu_info_error">Unsupport CPU Arch or Occur Error</string>

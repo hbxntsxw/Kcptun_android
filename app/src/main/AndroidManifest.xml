@@ -37,11 +37,6 @@
             android:enabled="true"
             android:exported="false"
             android:process=":white" />
-        <service
-            android:name=".service.GrayService"
-            android:enabled="true"
-            android:exported="false"
-            android:process=":gray" />
     </application>
 
 </manifest>

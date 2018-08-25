@@ -6,5 +6,7 @@
 .DS_Store
 /build
 /captures
-/app/goflyway-release.apk
+/app/cracker-release.apk
 /release_beta_apk/
+
+/build/
