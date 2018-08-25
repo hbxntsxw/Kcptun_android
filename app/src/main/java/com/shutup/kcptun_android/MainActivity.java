@@ -1,7 +1,7 @@
 package com.koolwiki.goflyway_android;
 
 
-import com.koolwiki.goflyway_android.service.WhiteService;
+import com.koolwiki.goflyway_android.WhiteService;
 
 
 import android.content.Context;
