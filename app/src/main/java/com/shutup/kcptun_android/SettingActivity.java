@@ -1,4 +1,4 @@
-package com.shutup.kcptun_android;
+package com.koolwiki.goflyway_android;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
