@@ -8,7 +8,7 @@ Fork自Kcptun_android，通过修改适配了goflyway，支持CDN。
 
 1、直接在wifi里面设置代理：直接在连接的wifi里面设置代理为“手动”，主机名称设为“127.0.0.1”，端口号为“8100”。设置好后手机就可以自由上网了。
 
-2、利用Postern设置代理：这种模式需要配合[Postern](https://play.google.com/store/apps/details?id=com.tunnelworkshop.postern&hl=zh)这个软件（可以去[这里下载](https://github.com/koolwiki/goflyway_android/raw/master/Postern-3.1.2.apk)）一起使用。Postern代理服务器栏填127.0.0.1，端口栏填goflyway上面填写的本地端口号（纯端口号，如下图的8100）。
+2、利用Postern设置代理：这种模式需要[Postern](https://play.google.com/store/apps/details?id=com.tunnelworkshop.postern&hl=zh)这个软件（可以去[这里下载](https://github.com/koolwiki/goflyway_android/raw/master/Postern-3.1.2.apk)）配合一起使用。Postern代理服务器栏填127.0.0.1，端口栏填goflyway上面填写的本地端口号（纯端口号，如下图的8100）。
 
 ![UI](https://github.com/koolwiki/goflyway_android/raw/master/UI.png "UI")
 
