@@ -16,7 +16,7 @@ Postern设置如下：
 
 ![配置代理](https://github.com/koolwiki/goflyway_android/raw/master/server.jpg "配置代理")
 
-![配置代理规则](https://github.com/koolwiki/goflyway_android/raw/master/rules.jpg "配置代理规则")
+![配置代理规则](https://github.com/koolwiki/goflyway_android/raw/master/rule.jpg "配置代理规则")
 
 #感谢 [goflyway项目](https://github.com/coyove/goflyway)
 
