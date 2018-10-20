@@ -12,7 +12,7 @@ Fork自Kcptun_android，通过修改适配了goflyway，支持CDN。
 
 ![UI](https://github.com/koolwiki/goflyway_android/raw/master/UI.png "UI")
 
-Postern设置如下：
+Postern设置如下（配置代理规则那里自行编辑需要走代理的域名）：
 
 ![配置代理](https://github.com/koolwiki/goflyway_android/raw/master/server.jpg "配置代理")
 
