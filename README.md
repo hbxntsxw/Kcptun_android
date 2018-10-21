@@ -1,4 +1,4 @@
-Fork自Kcptun_android，通过修改适配了goflyway，支持CDN，kcp和https，要支持kcp和https这些只需填写参数的后面自行添加-U kcp或-U https即可。理论上通过添加参数可以支持goflyway的所有功能。
+Fork自Kcptun_android，通过修改适配了goflyway，支持CDN，kcp和https，要支持kcp和https这些只需在填写参数的地方自行添加-U kcp或-U https即可。理论上通过添加参数可以支持goflyway的所有功能。
 
 [预编译安装包latest 下载](https://github.com/koolwiki/goflyway_android/releases/latest)
 
