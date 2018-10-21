@@ -10,13 +10,13 @@ Fork自Kcptun_android，通过修改适配了goflyway，支持CDN，kcp和https�
 
 2、利用Postern设置代理：这种模式需要[Postern](https://play.google.com/store/apps/details?id=com.tunnelworkshop.postern&hl=zh)这个软件（可以去[这里下载](https://github.com/koolwiki/goflyway_android/raw/master/Postern-3.1.2.apk)）配合一起使用。Postern代理服务器栏填127.0.0.1，端口栏填goflyway上面填写的本地端口号（纯端口号，如下图的8100）。
 
-![UI](https://github.com/koolwiki/goflyway_android/raw/master/UI.png "UI")
+![UI](https://github.com/koolwiki/goflyway_android/raw/master/UIs.png "UI")
 
 Postern设置如下（配置代理规则项，目标地址那里自行编辑需要走代理的域名）：
 
-![配置代理](https://github.com/koolwiki/goflyway_android/raw/master/server.jpg "配置代理")
+![配置代理](https://github.com/koolwiki/goflyway_android/raw/master/servers.jpg "配置代理")
 
-![配置代理规则](https://github.com/koolwiki/goflyway_android/raw/master/rule.jpg "配置代理规则")
+![配置代理规则](https://github.com/koolwiki/goflyway_android/raw/master/rules.jpg "配置代理规则")
 
 #感谢 [goflyway项目](https://github.com/coyove/goflyway)
 
