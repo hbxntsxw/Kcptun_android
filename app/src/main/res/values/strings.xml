@@ -7,11 +7,11 @@
     <string name="stop_kcp_tun_normal">Goflyway正常结束！可以再次运行！\n</string>
     <string name="stop_kcp_tun_exception">Goflyway异常结束！可以再次运行！\n</string>
     <string name="setting">设置</string>
-    <string name="local_server_port">本地端口号</string>
-    <string name="remote_server_ip">远程服务器域名</string>
-    <string name="remote_server_key">远程服务器密码</string>
-    <string name="remote_server_port">远程服务器端口-不用填写</string>
-    <string name="server_mode">-logtostderr</string>
+    <string name="local_server_port">本地端口号(-l)</string>
+    <string name="remote_server_ip">远程服务器域名或ip(-up)</string>
+    <string name="remote_server_key">远程服务器密码(-k)</string>
+    <string name="remote_server_port">远程服务器端口</string>
+    <string name="under_lay">传输模式(-U)</string>
     <string name="no_setting_info">请先进行服务器配置</string>
     <string name="arch_info">运行平台架构:</string>
     <string name="detect_cpu_info_error">不支持的CPU架构或出现异常</string>
