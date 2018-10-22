@@ -9,14 +9,16 @@ public class CmdParam {
     public static String REMOTEADDR = "-up";
     public static String KEY = "-k";
     public static String CRYPT = "-crypt";
-    public static String MODE = "-web-port";
+    public static String UNDERLAY = "-U";
+    public static String ACL = "-acl";
 
 
     public String localaddr;
     public String remoteaddr;
     public String key;
     public String crypt;
-    public String mode;
+    public String U;
+    public String A;
     public String mtu;
     public String sndwnd;
     public String revwnd;
