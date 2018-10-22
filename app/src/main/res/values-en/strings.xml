@@ -4,11 +4,11 @@
     <string name="info">Info</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
-    <string name="remote_server_ip">Remote Server IP</string>
+    <string name="remote_server_ip">Remote Server Domane or IP(-up)</string>
     <string name="remote_server_port">Remote Server Port</string>
-    <string name="local_server_port">Local Server Port</string>
-    <string name="remote_server_key">Remote Server Key</string>
-    <string name="server_mode">Server Mode</string>
+    <string name="local_server_port">Local Server Port(-l)</string>
+    <string name="remote_server_key">Remote Server Key(-k)</string>
+    <string name="under_lay">Underlay Mode(-U)</string>
     <string name="setting">Setting</string>
     <string name="stop_kcp_tun_exception">Goflyway Stop With Exception!</string>
     <string name="stop_kcp_tun_normal">Gflyway Stop With Normal!</string>
