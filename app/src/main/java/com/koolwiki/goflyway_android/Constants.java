@@ -11,7 +11,7 @@ public interface Constants {
     String RemoteServerPort = "RemoteServerPort";
     String LocalServerPort = "LocalServerPort";
     String ServerKey = "ServerKey";
-    String ServerMode = "ServerMode";
+    String UnderLay = "UnderLay";
 
     int SET_INFO_CONTENT = 0;
     int APPEND_INFO_CONTENT = 1;
