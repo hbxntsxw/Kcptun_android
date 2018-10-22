@@ -28,10 +28,10 @@ public class SettingActivity extends AppCompatActivity implements Constants{
     TextInputEditText mRemoteServerKey;
     @InjectView(R.id.remote_server_key_wrapper)
     TextInputLayout mRemoteServerKeyWrapper;
-    @InjectView(R.id.server_mode)
-    TextInputEditText mServerMode;
-    @InjectView(R.id.server_mode_wrapper)
-    TextInputLayout mServerModeWrapper;
+    @InjectView(R.id.under_lay)
+    TextInputEditText mUnderLay;
+    @InjectView(R.id.under_lay_wrapper)
+    TextInputLayout mUnderLayWrapper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class SettingActivity extends AppCompatActivity implements Constants{
         handleRestore(sharedPreferences, mRemoteServerPort, RemoteServerPort);
         handleRestore(sharedPreferences, mLocalServerPort, LocalServerPort);
         handleRestore(sharedPreferences, mRemoteServerKey, ServerKey);
-        handleRestore(sharedPreferences, mServerMode, ServerMode);
+        handleRestore(sharedPreferences, mUnderLay, UnderLay);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class SettingActivity extends AppCompatActivity implements Constants{
         handleChange(sharedPreferences, mRemoteServerPort, RemoteServerPort);
         handleChange(sharedPreferences, mLocalServerPort, LocalServerPort);
         handleChange(sharedPreferences, mRemoteServerKey, ServerKey);
-        handleChange(sharedPreferences, mServerMode, ServerMode);
+        handleChange(sharedPreferences, mUnderLay, UnderLay);
     }
 
     private void handleChange(SharedPreferences sharedPreferences,TextInputEditText textInputEditText, String key){
