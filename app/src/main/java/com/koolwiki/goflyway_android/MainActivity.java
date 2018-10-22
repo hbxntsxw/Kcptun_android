@@ -33,16 +33,17 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-
+import static com.koolwiki.goflyway_android.CmdParam.ACL;
 
 
 public class MainActivity extends AppCompatActivity implements Constants{
 
     private static final String TAG = "MainActivity";
     private String goflyway = "goflyway";
+    private String chinalist = "chinalist.txt";
     private String binary_path = null;
-
-
+    private String chinalist_path = null;
+    private int count_acl = 0;
     @InjectView(R.id.info)
     TextView mInfo;
     @InjectView(R.id.settingBtn)
@@ -93,10 +94,11 @@ public class MainActivity extends AppCompatActivity implements Constants{
     private void tryToStart() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         cmdParam = new CmdParam();
-        cmdParam.localaddr = sharedPreferences.getString(LocalServerPort, "");
-        cmdParam.remoteaddr = sharedPreferences.getString(RemoteServerIp, "");
+        //cmdParam.A = "chinalist";
+        cmdParam.localaddr = ":" + sharedPreferences.getString(LocalServerPort, "");
+        cmdParam.remoteaddr = sharedPreferences.getString(RemoteServerIp, "").equalsIgnoreCase("") ? "": sharedPreferences.getString(RemoteServerIp, "") + ":" + sharedPreferences.getString(RemoteServerPort,"");
         cmdParam.key = sharedPreferences.getString(ServerKey, "");
-        cmdParam.mode = sharedPreferences.getString(ServerMode, "");
+        cmdParam.U = sharedPreferences.getString(UnderLay, "");
         if (cmdParam.isBasicOk()){
             handleStartBtnClick();
         }else {
@@ -138,6 +140,8 @@ public class MainActivity extends AppCompatActivity implements Constants{
             BusProvider.getInstance().post(new MessageEvent(getString(R.string.stop),CHANGE_START_BTN_NAME));
             BusProvider.getInstance().post(new MessageEvent(false,CHANGE_SETTING_BTN_ENABLE));
             binary_path = installBinary(this, identifier, goflyway);
+            chinalist_path = installList(this);
+
 //            BusProvider.getInstance().post(new MessageEvent(binary_path, APPEND_INFO_CONTENT));
             if (BuildConfig.DEBUG) Log.d(TAG, binary_path);
 
@@ -187,13 +191,14 @@ public class MainActivity extends AppCompatActivity implements Constants{
         }else if (arch.contains("aarch64")) {
             //目前采取兼容模式
             identifierId = getResources().getIdentifier("goflyway", "raw", getPackageName());
-        }else if (arch.contains("i686")) {
+        }else if (arch.contains("x86_64")) {
             //目前采取兼容模式
             identifierId = getResources().getIdentifier("goflyway", "raw", getPackageName());
         }
         if (BuildConfig.DEBUG) Log.d(TAG, "identifierId:" + identifierId);
         return identifierId;
     }
+
 
     /**
      * 安装可执行程序
@@ -205,11 +210,12 @@ public class MainActivity extends AppCompatActivity implements Constants{
      */
     private  String installBinary(Context ctx, int resId, String filename) {
         try {
-            File f = new File(ctx.getDir("bin", 0), filename);
+            File f = new File(ctx.getApplicationContext().getFilesDir().getAbsolutePath(), filename);
             if (f.exists()) {
                 handleKcptunUpdate(ctx, resId, f);
             } else {
-                handleKcptunUpdate(ctx, resId, f);
+                copyRawFile(ctx,resId,f,"0755");
+                Log.d(TAG, f + " installed(copy)");
             }
             return f.getCanonicalPath();
         } catch (Exception e) {
@@ -218,18 +224,17 @@ public class MainActivity extends AppCompatActivity implements Constants{
         }
     }
 
+
     private void handleKcptunUpdate(Context ctx, int resId, File f) throws PackageManager.NameNotFoundException, IOException, InterruptedException {
         PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
         int currentVersionCode = pInfo.versionCode;
         int localVersionCode = mSharedPreferences.getInt(AppVersionCode,0);
         if (localVersionCode < currentVersionCode) {
             copyRawFile(ctx,resId,f,"0755");
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
-            editor.putInt(AppVersionCode,currentVersionCode);
-            editor.commit();
+            Log.d(TAG, f + " installed(handle)");
         }
         else{
-            if (BuildConfig.DEBUG) Log.d(TAG, "no update");
+            if (BuildConfig.DEBUG) Log.d(TAG, f + " not updated");
         }
     }
 
@@ -247,6 +252,60 @@ public class MainActivity extends AppCompatActivity implements Constants{
         // Change the permissions
         Runtime.getRuntime().exec("chmod " + mode + " " + abspath).waitFor();
     }
+
+
+
+    private  String installList(Context ctx) {
+        try {
+            File f = new File(getApplicationContext().getFilesDir().getAbsolutePath() + "/chinalist.txt");
+            if (f.exists()) {
+                handleListUpdate(f);
+            } else {
+                //handleListUpdate(f);
+                copyListFile(f,"0644");
+                Log.d(TAG, f + " installed(copy)");
+             //   Log.d(TAG, f + " exist: " );
+            }
+            return f.getCanonicalPath();
+        } catch (Exception e) {
+            Log.e(TAG, "installList failed: " + e.getLocalizedMessage());
+            return null;
+        }
+    }
+
+
+    private void handleListUpdate(File f) throws PackageManager.NameNotFoundException, IOException, InterruptedException {
+        PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+        int currentVersionCode = pInfo.versionCode;
+        int localVersionCode = mSharedPreferences.getInt(AppVersionCode,0);
+        if (localVersionCode < currentVersionCode) {
+            copyListFile(f,"0644");
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.putInt(AppVersionCode,currentVersionCode);
+            editor.commit();
+            Log.d(TAG, f + " installed(handle)");
+        }
+        else{
+            if (BuildConfig.DEBUG) Log.d(TAG, f + " not updated");
+        }
+    }
+
+    private  void copyListFile(File file, String mode) throws IOException, InterruptedException {
+        final String abspath = file.getAbsolutePath();
+        final FileOutputStream out = new FileOutputStream(file);
+        final InputStream is = getResources().openRawResource(R.raw.chinalist);
+        byte buf[] = new byte[1024];
+        int len;
+        while ((len = is.read(buf)) > 0) {
+            out.write(buf, 0, len);
+        }
+        out.close();
+        is.close();
+        // Change the permissions
+        Runtime.getRuntime().exec("chmod " + mode + " " + abspath).waitFor();
+    }
+
+
 
     /**
      * 执行指令
@@ -305,25 +364,54 @@ public class MainActivity extends AppCompatActivity implements Constants{
 
 
     private String setup_cmd(String binary_path, CmdParam cmdParam) {
+
         ArrayList<String> params = new ArrayList<>();
         if (cmdParam.localaddr != null) {
+            if(cmdParam.localaddr.indexOf("-acl") != -1)
+            {
+                count_acl = count_acl + 1;
+            }
             params.add(CmdParam.LOCALADDR);
             params.add(cmdParam.localaddr);
         }
 
         if (cmdParam.remoteaddr != null) {
+            if(cmdParam.remoteaddr.indexOf("-acl") != -1)
+            {
+                count_acl = count_acl + 1;
+            }
             params.add(CmdParam.REMOTEADDR);
             params.add(cmdParam.remoteaddr);
         }
 
         if (cmdParam.key != null) {
+            if(cmdParam.key.indexOf(" -acl") != -1)
+            {
+                count_acl = count_acl + 1;
+            }
             params.add(CmdParam.KEY);
             params.add(cmdParam.key);
         }
 
-        if (cmdParam.mode != null) {
-            params.add(CmdParam.MODE);
-            params.add(cmdParam.mode);
+        if (cmdParam.U != null) {
+            if(cmdParam.U.indexOf("-acl") != -1)
+            {
+                count_acl = count_acl + 1;
+            }
+        }
+
+        if (count_acl != 0) {
+            params.add(CmdParam.UNDERLAY);
+            params.add(cmdParam.U);
+            Log.d(TAG, "count_acl!=" + count_acl );
+            count_acl = 0;
+        }
+
+        else  {
+            params.add(CmdParam.UNDERLAY);
+            params.add(cmdParam.U + " " + ACL + " " + chinalist_path);
+            Log.d(TAG, "count_acl==" + count_acl );
+
         }
         StringBuilder stringBuilder = new StringBuilder(binary_path);
         for (String param : params) {
