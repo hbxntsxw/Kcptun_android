@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         cmdParam = new CmdParam();
         //cmdParam.A = "chinalist";
-        cmdParam.localaddr = ":" + sharedPreferences.getString(LocalServerPort, "");
+        cmdParam.localaddr = "0.0.0.0:" + sharedPreferences.getString(LocalServerPort, "");
         cmdParam.remoteaddr = sharedPreferences.getString(RemoteServerIp, "").equalsIgnoreCase("") ? "": sharedPreferences.getString(RemoteServerIp, "") + ":" + sharedPreferences.getString(RemoteServerPort,"");
         cmdParam.key = sharedPreferences.getString(ServerKey, "");
         cmdParam.U = sharedPreferences.getString(UnderLay, "");
