@@ -2,7 +2,7 @@ Fork自Kcptun_android，通过修改适配了goflyway，支持CDN，kcp和https�
 
 [预编译安装包latest 下载](https://github.com/koolwiki/goflyway_android/releases/latest)
 
-软件设置如下图，有的手机杀后台比较严重，可以把goflyway加入白名单或者设置成不进行省电优化，这样可以避免在后台中被杀掉。
+软件设置如下图，有的手机杀后台比较严重，可以把goflyway加入白名单或者设置成不进行省电优化，这样可以避免在后台中被杀掉。或者在termux里面运行goflyway（推荐采用这种方法）。
 
 代理设置有3种方法，3种方法都可以（推荐第3种）：
 
